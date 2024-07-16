@@ -98,15 +98,31 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
         [HttpGet("UpdateProduct/{id}")]
         public async Task<IActionResult> UpdateProduct(string id)
         {
+
+            ViewBag.v1 = "Ana Sayfa";
+            ViewBag.v2 = "Ürünler";
+            ViewBag.v3 = "Ürün Listesi";
+            ViewBag.v0 = "Ürün İşlemleri";
+
+            var client1 = _httpClientFactory.CreateClient();
+            var responseMessage1 = await client1.GetAsync("https://localhost:7257/api/Categories/");
+            var jsonData1 = await responseMessage1.Content.ReadAsStringAsync();
+            var values1 = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData1);
+            List<SelectListItem> categoryValues1 = (from x in values1 select new SelectListItem
+            {
+                Text = x.CategoryName,
+                Value = x.CategoryID
+            }).ToList();
+            ViewBag.CategoryValues = categoryValues1;
+
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7257/api/Products/" + id);
+            var responseMessage = await client.GetAsync("https://localhost:7257/api/Products/");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<UpdateProductDto>(jsonData);
                 return View(values);
             }
-            ModelState.AddModelError("", "Failed to load product.");
             return View();
         }
 
