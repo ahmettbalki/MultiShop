@@ -16,26 +16,24 @@ namespace MultiShop.WebUI.Controllers
 
         public IActionResult Index(string id)
         {
+            ViewBag.directory1 = "Ana Sayfa";
+            ViewBag.directory2 = "Ürünler";
+            ViewBag.directory3 = "Ürün Listesi";
             ViewBag.i = id;
             return View();
         }
         public IActionResult ProductDetail(string id)
         {
-            ViewBag.x = id;
+            ViewBag.directory1 = "Ana Sayfa";
+            ViewBag.directory2 = "Ürün Listesi";
+            ViewBag.directory3 = "Ürün Detayları";
+            ViewBag.i = id;
             return View();
         }
 
         [HttpGet]
-        public async Task<PartialViewResult> AddComment(string id)
+        public PartialViewResult AddComment()
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7157/api/Comments/CommentListByProductId?id=" + id);
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultCommentDto>>(jsonData);
-                return PartialView(values);
-            }
             return PartialView();
         }
 
