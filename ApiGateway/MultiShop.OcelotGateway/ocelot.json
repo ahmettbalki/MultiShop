@@ -7,7 +7,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 7257
+          "Port": 7000
         }
       ],
       "UpstreamPathTemplate": "/services/catalog/{everything}",
@@ -19,6 +19,7 @@
       }
 
     },
+
     //Discount Mikroservis
     {
       "DownstreamPathTemplate": "/api/{everything}",
@@ -26,7 +27,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 7258
+          "Port": 7001
         }
       ],
       "UpstreamPathTemplate": "/services/discount/{everything}",
@@ -46,7 +47,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 7259
+          "Port": 7002
         }
       ],
       "UpstreamPathTemplate": "/services/order/{everything}",
@@ -66,7 +67,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 7260
+          "Port": 7073
         }
       ],
       "UpstreamPathTemplate": "/services/cargo/{everything}",
@@ -86,7 +87,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 7261
+          "Port": 7004
         }
       ],
       "UpstreamPathTemplate": "/services/basket/{everything}",
@@ -98,6 +99,7 @@
       }
 
     },
+
     //Message Mikroservis
     {
       "DownstreamPathTemplate": "/api/{everything}",
@@ -105,7 +107,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 7263
+          "Port": 7078
         }
       ],
       "UpstreamPathTemplate": "/services/message/{everything}",
@@ -125,7 +127,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 7157
+          "Port": 7075
         }
       ],
       "UpstreamPathTemplate": "/services/comment/{everything}",
@@ -137,6 +139,7 @@
       }
 
     },
+
     //Payment Mikroservis
     {
       "DownstreamPathTemplate": "/api/{everything}",
@@ -144,7 +147,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 7262
+          "Port": 7076
         }
       ],
       "UpstreamPathTemplate": "/services/payment/{everything}",
@@ -164,7 +167,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 7264
+          "Port": 7077
         }
       ],
       "UpstreamPathTemplate": "/services/images/{everything}",
@@ -175,7 +178,6 @@
         "AllowedScopes": [ "ImageFullPermission" ]
       }
     }
-
   ],
   "GlobalConfiguration": {
     "BaseUrl": "http://localhost:5000"

@@ -26,8 +26,18 @@ namespace MultiShop.IdentityServer.Controllers
         [HttpGet("GetUser")]
         public async Task<IActionResult> GetUser()
         {
-            var userClaim = User.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Sub);
+            var userClaim = User.Claims.FirstOrDefault(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier");
+            if (userClaim == null)
+            {
+                return Unauthorized(); // Eğer claim bulunamazsa yetkilendirme hatası dönebiliriz
+            }
+
             var user = await _userManager.FindByIdAsync(userClaim.Value);
+            if (user == null)
+            {
+                return NotFound(); // Eğer kullanıcı bulunamazsa, 404 dönebiliriz
+            }
+
             return Ok(new
             {
                 Id = user.Id,
